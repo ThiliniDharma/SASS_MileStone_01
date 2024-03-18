@@ -1,0 +1,127 @@
+@use "config" as config;
+@import "functions";
+@import "animations";
+
+//Define variables for recurring values (demonstration)
+$main-font: 'Harrington', sans-serif;
+$primary-color: #f69d3c;
+$hover-color: #835C3B;
+$btn-hover-color: #ebf8e1;
+
+// Body Styles
+.body {
+  margin: 0px;
+  position: relative;
+}
+
+// Background Styles
+.background {
+  width: 100%;
+  height: 100vh;
+  background: {
+    image: url("resources/Background.jpg");
+    size: cover;
+    repeat: repeat-x;
+    background-color: $primary-color;
+  }
+  overflow-x: hidden;
+  position: absolute;
+}
+
+// Girl Styles
+.girl {
+  height: 250px;
+  margin: {
+    top: 620px;
+    left: 300px;
+  }
+  position: absolute;
+}
+
+// Obstacle Styles
+.obs {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  margin-top: 790px;
+  background: {
+    image: url("resources/dragon.gif");
+    size: contain;
+    repeat: no-repeat;
+  }
+  display: flex;
+}
+
+// Score Styles
+.score {
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 35px;
+  margin-top: 40px;
+  position: absolute;
+  display: flex;
+}
+
+// Game Over Styles
+.gameOver {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-image: linear-gradient(0.25turn, #3f87a6, #ebf8e1, $primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: {
+    size: 60px;
+    weight: bold;
+    family: $main-font;
+  }
+  color: white;
+  visibility: hidden;
+}
+
+// Button Styles
+@mixin button-style($bg-color, $font-size) {
+    @include flex-center;
+    background-color: $bg-color;
+    color: $text-dark;
+    font-size: $font-size;
+    font-family: $primary-font;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: $border-thickness solid $border-color;
+    border-radius: $border-radius-large;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 1px 0 10px lighten($bg-color, 10%);
+    margin-top: 20px;
+    position: relative;
+    height: 125px;
+    width: 125px;
+  }
+  
+  @mixin hover-effect($hover-color) {
+    &:hover {
+      background-color: $hover-color;
+      color: $text-light;
+    }
+  }
+
+
+// Animation
+.blink {
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
